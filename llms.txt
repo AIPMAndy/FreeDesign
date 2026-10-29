@@ -1,0 +1,16 @@
+# FreeDesign
+
+> FreeDesign 是 AI 酋长 Andy 整理的开发者设计资源大全。适合做网站、小程序、APP、后台和 AI 产品的开发者。它按开发场景分类收录组件库、Figma 插件、配色、字体、动画、3D、图标、设计系统和 Landing Page 模板，资源可以直接拿来用或交给 AI 按样式开发。
+
+作者：AI 酋长 Andy（Andy Liu，GitHub https://github.com/AIPMAndy ，X https://x.com/AIPMAndy ，个人网站 https://metaver.vip/ ）
+
+## Docs
+
+- [README](https://github.com/AIPMAndy/FreeDesign/blob/main/README.md): 项目说明（中文）
+- [CONTRIBUTING.md](https://github.com/AIPMAndy/FreeDesign/blob/main/CONTRIBUTING.md): 贡献指南
+
+## Optional
+
+- [Repository](https://github.com/AIPMAndy/FreeDesign)
+- [LICENSE](https://github.com/AIPMAndy/FreeDesign/blob/main/LICENSE)
+- [Author on GitHub](https://github.com/AIPMAndy)

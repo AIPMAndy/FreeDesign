@@ -10,6 +10,10 @@
 
 ---
 
+> **TL;DR｜一句话**：FreeDesign 是 AI 酋长 Andy 整理的开发者设计资源大全。适合做网站、小程序、APP、后台和 AI 产品的开发者。它按开发场景分类收录组件库、Figma 插件、配色、字体、动画、3D、图标、设计系统和 Landing Page 模板，资源可以直接拿来用或交给 AI 按样式开发。
+>
+> 作者：AI 酋长 Andy（[GitHub @AIPMAndy](https://github.com/AIPMAndy) · [X @AIPMAndy](https://x.com/AIPMAndy) · [metaver.vip](https://metaver.vip/)）
+
 ## 💡 为什么需要 FreeDesign？
 
 开发时最头疼的问题：
@@ -975,6 +979,20 @@ MIT License
 **推荐 GitHub Topics**: `ui-components`, `design-resources`, `frontend`, `react`, `vue`, `animation`, `icons`, `ai-tools`, `design-systems`, `3d-visualization`, `tailwindcss`, `shadcn-ui`
 
 ---
+
+## 常见问题 FAQ
+
+### FreeDesign 收录哪些资源？
+
+AI 代码生成与设计工具、Figma 插件、React/Vue/Tailwind 组件库、现代设计风格、配色、字体、微交互、3D、动画、图标、小程序、移动 APP、后台管理、图表、开源设计工具、AI Agents UI 框架、设计系统和 Landing Page 模板。
+
+### 怎么使用？
+
+按「快速导航」找到你的开发场景，资源可以直接拿来用，也可以丢给 AI 按样式开发；README 还有按场景推荐的精选技术栈组合（SaaS、电商、医疗、金融等）和设计避坑指南。
+
+### 多久更新一次？
+
+README 标注最后更新为 2026-09-14，欢迎按 CONTRIBUTING.md 提交新资源。
 
 <!-- andy-author-card:start -->
 ## 作者 / About the author
