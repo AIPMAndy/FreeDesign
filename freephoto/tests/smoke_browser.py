@@ -59,6 +59,23 @@ def run():
                     assert metadata['size'] > 0, 'Output image is empty'
                     assert not metadata['containsSensitiveMarker'], 'Metadata leaked into output'
                     assert not missing, f'Broken vendor requests on {device}: {missing}'
+
+                    # Independent DOM sink probe: malicious file names must not create HTML.
+                    probe = page.evaluate("""() => {
+                      const name = '<img data-xss-probe src=x onerror=window.__freephoto_xss=1>.png';
+                      const html = buildOutputItemHTML({
+                        outputImageBlob:'blob:local-test',thumbnailDataURL:'blob:local-test',
+                        outputFileNameText:name,outputFileExtension:'png',
+                        width:1,height:1,fileSize:8,fileSizeSavedTrend:'-',
+                        fileSizeSavedPercentage:0,fileSizeSavedClass:'badge--success'
+                      });
+                      const div=document.createElement('div');
+                      div.innerHTML=html;
+                      return {unsafe:!!div.querySelector('[data-xss-probe]'),
+                              actualName:div.querySelector('a[download]')?.getAttribute('download')};
+                    }""")
+                    assert not probe['unsafe'], f'Untrusted filename created an element: {probe}'
+                    assert '<img data-xss-probe' in probe['actualName'], 'Output filename changed'
                     page.screenshot(path=str(OUT/f'smoke-{device}.png'), full_page=True)
                     results['cases'].append({'device':device,'status':'PASS','elapsed_ms':elapsed_ms,
                         'output_bytes':metadata['size'], 'missing_assets':missing})
