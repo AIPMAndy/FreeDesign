@@ -43,3 +43,11 @@ jobs:
           curl --fail --silent --show-error http://127.0.0.1:8765/index.html >/dev/null
           curl --fail --silent --show-error http://127.0.0.1:8765/freephoto-theme.css >/dev/null
           curl --fail --silent --show-error http://127.0.0.1:8765/assets/js/compression.js >/dev/null
+
+      - name: Upload compiled static site
+        uses: actions/upload-artifact@v4
+        with:
+          name: freephoto-static-site
+          path: /tmp/freephoto-dist
+          if-no-files-found: error
+          retention-days: 14
