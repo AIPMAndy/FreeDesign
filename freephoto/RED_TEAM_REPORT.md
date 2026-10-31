@@ -39,3 +39,10 @@ Attack scope excludes execution against live users or production data. Vulnerabi
 ### Cycle 3 RT-12 (Medium): silent omission in partial ZIP
 
 Even after Cycle 2 fixed wrong ZIP names, a partially successful export could silently omit failed pictures while the browser still downloads a ZIP. Add visible, accessible Chinese status and explicitly clear stale warnings. Unit test ensures textContent rather than raw HTML. Chromium test uses a revoked blob and verifies both notice and ZIP names. CI pending; real iPhone Safari unverified.
+
+## Cycle 4 — memory lifecycle and real-format audit
+
+- **RT-12 / Medium / source confirmed:** Original MAZANOKE creates object URLs for output images and thumbnails in `compression.js`, but removes cards in `download.js` without revoking either. Repeating the add/delete workflow can retain browser image buffers. `cycle4_patch.py` now releases only URLs belonging to deleted result cards. Test with real Chromium and instrumentation; unit tests alone do not prove heap release.
+- **RT-13 / Medium / performance evidence gap:** New deterministic 30-image JPEG batch is 240×160 per image; it is a correctness/stability fixture, not a realistic 20MP photo stress test or peak-memory profile. It records wall time and object URL cleanup, NOT peak resident memory or P95 encoding time.
+- **RT-14 / Medium / compatibility gap:** Synthetic 8-bit HEIC will be generated with pillow-heif 1.8.1 and passed through pinned MAZANOKE browser/WASM decode. A Chromium result cannot validate iPhone Safari, HEIC burst photos or 10-bit HEIC.
+- **Review independence:** Builder, adversarial audit and Judge are still staged within one assistant; independent agent execution has not occurred. Preserve raw CI evidence and keep Draft until review.
