@@ -34,6 +34,8 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Chromium smoke (desktop + mobile viewport)
         run: python freephoto/tests/smoke_browser.py
+      - name: Chromium formats, privacy, and partial ZIP regression
+        run: python freephoto/tests/realworld_browser.py
       - name: Preserve test evidence
         if: always()
         uses: actions/upload-artifact@v4

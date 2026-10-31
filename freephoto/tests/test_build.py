@@ -16,6 +16,7 @@ class PatchTest(unittest.TestCase):
             from hardening import ORIGINAL_WORKER, ORIGINAL_BAD_FILE, ORIGINAL_PROGRESS
             (p/'assets/js/compression.js').write_text('\n'.join((ORIGINAL_WORKER, ORIGINAL_BAD_FILE, ORIGINAL_PROGRESS)), encoding='utf8')
             (p/'assets/js/helpers.js').write_text('  // Create the output dom for compressed images.\n${outputFileNameText.slice(0, -8)}\n${outputFileNameText.slice(-8)}\ndownload=\"${outputFileNameText}\"', encoding='utf8')
+            (p/'assets/js/download.js').write_text('return await response.blob();\nconst fileSize = parseInt(compressedImages[i].dataset.filesize, 10);\n      const originalName = compressedImages[i].download;\ncurrentZip.file(fileName, validBlobs[i]);',encoding='utf8')
             (p/'index.html').write_text('''<html lang="en"><head><title>MAZANOKE | Online Image Optimizer That Runs Privately in Your Browser</title>
             <meta name="description" content="Optimize images locally and privately by converting and compressing them offline in your browser. Supports JPG, PNG, WebP, HEIC, AVIF, GIF, SVG." />
             <meta name="robots" content="noindex, nofollow" />

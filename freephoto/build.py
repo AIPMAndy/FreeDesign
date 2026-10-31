@@ -12,6 +12,7 @@ import re
 import shutil
 import subprocess
 from hardening import harden_distribution
+from cycle2_patch import patch_zip_download
 
 UPSTREAM = 'https://github.com/civilblur/mazanoke.git'
 UPSTREAM_COMMIT = 'ceab516ade2a68f3c0abef8bd8fa03ada3ac3e7b'
@@ -70,6 +71,7 @@ def patch_site(target: Path) -> None:
     shutil.copy2(BASE/'freephoto-theme.css', target/'freephoto-theme.css')
     shutil.copy2(BASE/'freephoto-i18n.js', target/'freephoto-i18n.js')
     harden_distribution(target)
+    patch_zip_download(target)
     (target/'FORK-NOTICE.md').write_text(
         '# FreePhoto fork notice\n\n'
         'This distribution is a modified version of **MAZANOKE** by civilblur.\n'
@@ -85,7 +87,11 @@ def build(out: Path, source: Path | None = None) -> None:
     if source:
         origin = source.resolve()
         if not origin.is_dir(): raise RuntimeError(f'Not a source directory: {origin}')
-        shutil.copytree(origin, out, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.git', '.github'))
+        if out == origin or out in origin.parents or origin in out.parents:
+            raise RuntimeError('Build destination must not overlap the upstream source directory')
+        if out.exists():
+            raise RuntimeError('Build destination exists; use a clean directory to avoid stale assets')
+        shutil.copytree(origin, out, ignore=shutil.ignore_patterns('.git', '.github'))
     else:
         if out.exists(): shutil.rmtree(out)
         subprocess.run(['git','clone','--quiet',UPSTREAM,str(out)],check=True)
