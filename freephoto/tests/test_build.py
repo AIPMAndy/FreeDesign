@@ -34,7 +34,10 @@ class PatchTest(unittest.TestCase):
             const CACHE_NAME = `mazanoke-cache-${APP_VERSION}`;
             const urlsToCache = ["/", "/index.html", "/assets/js/events.js"];
             ''',encoding='utf8')
-            build.patch_site(p)
+            # Baseline fixture only models the earlier upstream ZIP functions.
+            # Cycle 4 full URL cleanup is independently tested against its pinned hooks.
+            with patch('build.patch_object_url_cleanup'):
+                build.patch_site(p)
             html=(p/'index.html').read_text()
             self.assertIn('FreePhoto',html)
             self.assertIn('lang="zh-CN"',html)
