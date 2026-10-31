@@ -44,3 +44,11 @@ If any file leaves the device unexpectedly, image bytes are modified without cle
 
 
 Cycle 3: add accessible partial/total ZIP warnings, verify with 10 Python tests and the CI Chromium failed-middle-blob test. Keep PR draft. After CI: real Safari iPhone/HEIC and a 30-image same-hardware competitor benchmark.
+
+## Cycle 4 — working branch `feat/freephoto-cycle-4-blob-lifecycle`
+
+1. Builder: clean up output image and thumbnail object URLs after single-item and all-result deletion; do not touch upstream compression algorithms.
+2. Attack: test repeated create/delete behavior with 30 synthetic JPEGs, generate HEIC in CI, inspect external requests and output pixel identity.
+3. Judge: inspect GitHub Actions logs + JSON and reject release on any critical regression.
+4. Next: native Safari on iPhone, 10/12-bit and corrupt HEIC, genuine 20MP×30 batch RSS/heap profiling, image comparison against stock MAZANOKE, independent UX accessibility testing.
+5. Keep PR as Draft; no merge or deployment until user approves and blockers are addressed.
