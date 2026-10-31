@@ -59,7 +59,11 @@ def enhance_website(target: Path) -> None:
     <meta property="og:description" content="免费图片压缩、转换格式、调整尺寸，图片在浏览器本地处理。开源、无水印、免登录。" />
     <meta name="theme-color" content="#f7f8f3" />
   </head>''', 1)
+    source = source.replace('href="./assets/images/favicon-32x32.png"', 'href="./freephoto-mark.svg"')
+    source = source.replace('href="./assets/images/favicon-16x16.png"', 'href="./freephoto-mark.svg"')
+    source = source.replace('href="./assets/images/apple-touch-icon.png"', 'href="./freephoto-mark.svg"')
     html_file.write_text(source, encoding="utf-8")
+    (target / "freephoto-mark.svg").write_text("""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="44" fill="#285d46"/><rect x="35" y="42" width="122" height="108" rx="18" fill="#f1f6ef"/><circle cx="117" cy="75" r="14" fill="#a2c6a6"/><path d="M41 126 76 90 105 120 127 99 151 127v16H41Z" fill="#5a9877"/></svg>""",encoding="utf-8")
     shutil.copy2(Path(__file__).with_name("freephoto-site.css"), target / "freephoto-site.css")
     service_worker = target / "service-worker.js"
     if service_worker.exists():
@@ -70,3 +74,7 @@ def enhance_website(target: Path) -> None:
         service_worker.write_text(sw.replace(marker, marker + '\n  "./freephoto-site.css",', 1),encoding="utf-8")
     (target / "robots.txt").write_text("User-agent: *\nAllow: /\n",encoding="utf-8")
     (target / ".nojekyll").write_text("",encoding="utf-8")
+    manifest_path=target/"manifest.json"
+    info=json.loads(manifest_path.read_text(encoding="utf-8"))
+    info["icons"].append({"src":"./freephoto-mark.svg","sizes":"any","type":"image/svg+xml"})
+    manifest_path.write_text(json.dumps(info,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
