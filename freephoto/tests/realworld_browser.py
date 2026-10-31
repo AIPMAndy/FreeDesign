@@ -81,6 +81,9 @@ def zip_test(page,url,images):
     page.evaluate("(href) => URL.revokeObjectURL(href)",missing[1])
     with page.expect_download(timeout=45000) as event:
         page.locator('#downloadAllImagesButton').click()
+    banner=page.locator('#freephoto-zip-warning')
+    banner.wait_for(timeout=10000)
+    assert '跳过 1 张' in banner.inner_text(), banner.inner_text()
     with tempfile.TemporaryDirectory() as td:
         out=Path(td)/'out.zip';event.value.save_as(str(out))
         with ZipFile(out) as z:

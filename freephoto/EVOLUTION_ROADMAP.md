@@ -41,3 +41,6 @@ If any file leaves the device unexpectedly, image bytes are modified without cle
 - Benchmark: 30 common-image corpus under identical browser/hardware settings, collecting P50/P95 and peak memory against pinned MAZANOKE and Squoosh where fair.
 - Security: adversarial SVG/EXIF input, malformed images, oversized files, supply-chain inventory and offline PWA validation.
 - Keep both PR #3 and stacked PR #4 in Draft until independent release approval and user confirmation for production publish.
+
+
+Cycle 3: add accessible partial/total ZIP warnings, verify with 10 Python tests and the CI Chromium failed-middle-blob test. Keep PR draft. After CI: real Safari iPhone/HEIC and a 30-image same-hardware competitor benchmark.
