@@ -25,3 +25,7 @@ MAZANOKE remains the pinned algorithm baseline; Squoosh remains a codec/quality 
 
 
 Cycle 3 addresses a user-facing error-reporting gap in partial ZIP export. No comparative performance or product ranking is asserted.
+
+## Cycle 4 — engineering comparison boundary
+
+MAZANOKE remains the same pinned codec engine, so a FreePhoto UI fork cannot claim improved encoding quality by attribution alone. This cycle targets the **blob URL lifetime after output deletion**. Synthetic 30-image tests are not valid head-to-head performance evidence against Squoosh, Caesium, iLoveIMG or ImageMagick. A real benchmark still requires 30 representative licensed photographs, matching codec/quality, repeated trials on identical hardware, and measured heap/RSS alongside output file size.
