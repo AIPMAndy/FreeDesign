@@ -49,3 +49,12 @@ Evidence: [GitHub Actions quality gate #41175773172](https://github.com/AIPMAndy
 ### Cycle 3 candidate (CI pending)
 
 Product-value fix: partial ZIP exports must visibly disclose skipped-image count; total failure must display an accessible error. Baseline Cycle 2: correctness of ZIP members was proven but skipped files were only logged to the console. Added 2 mock unit tests and a Chromium warning assertion; do not claim passing before CI. No quantified performance changes.
+
+## Cycle 4 — candidate metrics (not yet release-approved)
+
+- Local Python test baseline before cycle: **10/10 passed**. Candidate source checks: **12/12 passed** on local Python 3.13.
+- New test: 30 synthetic 240×160 JPEGs; verify completed count and actual decoded output, observed/result object URL count after deleting single card and all cards. Heap memory not measured.
+- New test: synthetic 64×48 HEIC→PNG decoded and checked in Linux Chromium. Native iPhone Safari not tested.
+- Browser test results and processing time: **pending CI**. Do not claim success or improvement until run is inspected.
+- Numerical quality score and same-input competitor performance: **withheld** for lack of comparable controlled measurements.
+- Release judgment: NOT RELEASE APPROVED while Safari and representative large-image/peak-memory tests remain outstanding.
