@@ -3,6 +3,8 @@ from pathlib import Path
 import unittest
 import tempfile
 from unittest.mock import patch
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from marketing import HERO, DETAILS
 
 class WebsiteTests(unittest.TestCase):
