@@ -49,3 +49,23 @@ Evidence: [GitHub Actions quality gate #41175773172](https://github.com/AIPMAndy
 ### Cycle 3 candidate (CI pending)
 
 Product-value fix: partial ZIP exports must visibly disclose skipped-image count; total failure must display an accessible error. Baseline Cycle 2: correctness of ZIP members was proven but skipped files were only logged to the console. Added 2 mock unit tests and a Chromium warning assertion; do not claim passing before CI. No quantified performance changes.
+
+## Cycle 4 — candidate metrics (not yet release-approved)
+
+- Local Python test baseline before cycle: **10/10 passed**. Candidate source checks: **12/12 passed** on local Python 3.13.
+- New test: 30 synthetic 240×160 JPEGs; verify completed count and actual decoded output, observed/result object URL count after deleting single card and all cards. Heap memory not measured.
+- New test: synthetic 64×48 HEIC→PNG decoded and checked in Linux Chromium. Native iPhone Safari not tested.
+- Browser test results and processing time: **pending CI**. Do not claim success or improvement until run is inspected.
+- Numerical quality score and same-input competitor performance: **withheld** for lack of comparable controlled measurements.
+- Release judgment: NOT RELEASE APPROVED while Safari and representative large-image/peak-memory tests remain outstanding.
+
+## Cycle 4 verified GitHub Actions evidence — 2026-10-31
+
+CI: https://github.com/AIPMAndy/FreeDesign/actions/runs/41176755578 (Linux Ubuntu GitHub Actions, Python 3.12, Chromium, Pillow 12.0.0, pillow-heif 1.8.1; source pinned MAZANOKE ceab516ade2a68f3c0abef8bd8fa03ada3ac3e7b).
+
+- Final job conclusion: **success**; 12/12 Python tests, build/attributions, prior Chromium PNG/JPEG/WebP/ZIP regressions, synthetic HEIC and batch suite all completed successfully.
+- 30 synthetic JPEGs, each 240×160 pixels: total processing wall time **27,271.6 ms** (single run; no warm/cold repetitions, no before/after speed comparison).
+- Output and thumbnail Object URLs: 60 observed, **60 revoked, 0 retained** after individual deletion followed by clearing all results. Proxy for URL lifecycle only; **RSS, JavaScript heap, browser-native memory and true leak-free status NOT measured**.
+- Synthetic 8-bit HEIC 64×48→PNG 64×48: decoded, output **85 bytes**, pixel checked. This does **not** validate high-resolution/10-bit Apple HEIC or native Safari.
+- No off-device HTTP requests were detected by this test's page-level request listener. This is not a proof of all user/network environments.
+- Release still conditional: native iOS Safari, meaningful high-resolution corpus, license review and independent Judge remain open.
