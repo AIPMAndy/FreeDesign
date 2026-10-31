@@ -18,3 +18,8 @@ A numeric weighted score or worldwide ranking is **not warranted** until measure
 - Original FreePhoto included only four files in `FreeDesign/freephoto/`; no test or CI source files under that directory.
 - Local `python -m unittest discover -s tests -v`: before patch 1/1; after patch 4/4. Tests use fixtures and validate code transforms, **not** real image encode/decode.
 - Actual Chromium/browser result: pending PR CI; do not claim functionality success from static unit tests alone.
+
+## CI observations (not a benchmark)
+
+- [Initial quality gate run 41174771555](https://github.com/AIPMAndy/FreeDesign/actions/runs/41174771555): 4/4 unit tests and Chromium desktop/mobile-viewport smoke passed. Example processing times **1,032.6 ms desktop**, **253.2 ms mobile viewport** for one synthetic PNG; different warm-up conditions make these **not comparable performance results**.
+- [Subsequent run 41174815474](https://github.com/AIPMAndy/FreeDesign/actions/runs/41174815474): browser test timed out after PWA first activation/reload. A test synchronization patch is under review. Stable green repetition and physical device testing remain pending.
