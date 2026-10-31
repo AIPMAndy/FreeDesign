@@ -31,3 +31,16 @@ A numeric weighted score or worldwide ranking is **not warranted** until measure
 - New real-browser CI: image codec/dimensions, EXIF/PNG metadata marker removal, external HTTP request detection, ZIP corruption test with a revoked middle blob.
 - Performance: no same-host competitor baseline or measurable improvement established.
 - Release approval: NOT APPROVED pending CI and real-device verification.
+
+
+### Cycle 2 CI-verified results — 2026-10-31
+
+Evidence: [GitHub Actions quality gate #41175773172](https://github.com/AIPMAndy/FreeDesign/actions/runs/41175773172), commit `9ffcb5294e16e25ca2bb8ab4189d8ad7b170b6d5`.
+
+- Unit tests: **8/8 passed**, compared with 4/4 in Cycle 1.
+- Pinned-upstream production build: passed; license, vendor files and attributions present.
+- Chromium desktop and 390px mobile viewport PNG smoke: passed. Recorded smoke task time desktop **1333.4 ms** and mobile viewport **315.5 ms**, *not directly comparable due to caching/warmup*.
+- Chromium synthetic format/privacy suite: JPEG→WebP and PNG metadata marker removal **passed** (whole-test scenario elapsed **5343.1 ms**).
+- Corrupted-middle-blob ZIP test: **passed**, expected `a-green.png` and `c-blue.png` retained correct filenames/pixel identity (scenario elapsed **4469.2 ms**).
+- External network request check: none observed in the two synthetic browser scenarios (not a full production network audit).
+- Numeric global score: **not assigned**, since iPhone Safari, HEIC, peak memory and same-host competitor quality/performance baselines remain unmeasured.

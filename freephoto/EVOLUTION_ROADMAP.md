@@ -32,3 +32,12 @@ If any file leaves the device unexpectedly, image bytes are modified without cle
 2. Run Chromium JPEG/PNG/WebP, ZIP, and same-origin request smoke in CI; collect raw evidence.
 3. Keep PR draft until CI and independent real-device checks.
 4. Next: real Safari iPhone; HEIC realistic fixtures; 30-image identical-environment P50/P95 and peak memory benchmark; accessibility keyboard walkthrough. Do not deploy without user confirmation.
+
+
+### Next cycle after green CI (2026-10-31)
+
+- Release-blocking: user-visible **partial ZIP failure warning**, so a successful ZIP cannot silently hide omitted files.
+- On-device: actual iPhone Safari HEIC/JPEG/PNG plus ZIP downloads; Android Chrome and keyboard-only tests.
+- Benchmark: 30 common-image corpus under identical browser/hardware settings, collecting P50/P95 and peak memory against pinned MAZANOKE and Squoosh where fair.
+- Security: adversarial SVG/EXIF input, malformed images, oversized files, supply-chain inventory and offline PWA validation.
+- Keep both PR #3 and stacked PR #4 in Draft until independent release approval and user confirmation for production publish.

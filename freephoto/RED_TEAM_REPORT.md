@@ -27,3 +27,10 @@ Attack scope excludes execution against live users or production data. Vulnerabi
 | RT-11 | Medium | Previous browser tests only used PNG. | Added JPEG→WebP and real PNG/JPEG metadata checks |
 
 **Independent reviewer limitation:** Builder, adversarial audit, and judge are separately documented stages within one assistant session, not three independent agents. iOS Safari, HEIC, large-batch load, and global benchmarks remain unverified.
+
+
+### Cycle 2 Judge verification — 2026-10-31
+
+[CI run 41175773172](https://github.com/AIPMAndy/FreeDesign/actions/runs/41175773172) passes 8 unit tests and Chromium smoke. Synthetic browser check confirms: (1) JPEG→WebP dimensions and output type, (2) PNG/JPEG private marker removed, (3) invalid middle ZIP blob excluded while remaining green/blue data retains original corresponding names, and (4) no external page request seen. Tests were run in a separate CI environment, though Red Team and Judge were phases of the same assistant session, **not fully independent agents**.
+
+**Remaining issue:** a partially successful ZIP currently skips failed files without a prominent user-facing warning; add an explicit user-visible count/warning before general release. Safari-on-real-iPhone, HEIC variants, larger images, and full egress/dependency audit are still pending. These observations do not justify a global-best claim.
