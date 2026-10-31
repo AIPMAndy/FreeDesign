@@ -13,3 +13,5 @@ Independent-review limitation: Builder and Red Team are separate inspection/test
 | RT-07 | Low | `--from-source` build can merge into existing directory, leaving stale files | Use clean staging build, strict source/destination check | Roadmap |
 
 Attack scope excludes execution against live users or production data. Vulnerabilities are code-review findings until exploit reproductions and fixes are independently confirmed.
+
+| RT-08 | Medium | GitHub Actions run [41174815474](https://github.com/AIPMAndy/FreeDesign/actions/runs/41174815474) timed out waiting for image export; logs show first PWA activation reload during test. | Wait until `navigator.serviceWorker.controller` is established before submitting test input; rerun same smoke | Fix committed; CI revalidation pending |
