@@ -22,3 +22,6 @@
 ## Cycle 2: integrity-focused work
 
 MAZANOKE remains the pinned algorithm baseline; Squoosh remains a codec/quality UX comparator. This cycle targets the correctness of partial ZIP download recovery rather than performance superiority. No competitive rank or improvement percentage is asserted without reproducible same-fixture tests.
+
+
+Cycle 3 addresses a user-facing error-reporting gap in partial ZIP export. No comparative performance or product ranking is asserted.

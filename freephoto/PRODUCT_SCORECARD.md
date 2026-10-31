@@ -44,3 +44,8 @@ Evidence: [GitHub Actions quality gate #41175773172](https://github.com/AIPMAndy
 - Corrupted-middle-blob ZIP test: **passed**, expected `a-green.png` and `c-blue.png` retained correct filenames/pixel identity (scenario elapsed **4469.2 ms**).
 - External network request check: none observed in the two synthetic browser scenarios (not a full production network audit).
 - Numeric global score: **not assigned**, since iPhone Safari, HEIC, peak memory and same-host competitor quality/performance baselines remain unmeasured.
+
+
+### Cycle 3 candidate (CI pending)
+
+Product-value fix: partial ZIP exports must visibly disclose skipped-image count; total failure must display an accessible error. Baseline Cycle 2: correctness of ZIP members was proven but skipped files were only logged to the console. Added 2 mock unit tests and a Chromium warning assertion; do not claim passing before CI. No quantified performance changes.
