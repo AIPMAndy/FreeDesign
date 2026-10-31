@@ -62,6 +62,9 @@ def format_test(page,url,jpg,green):
     output.wait_for(timeout=60000)
     assert output.get_attribute('download').endswith('.webp')
     validate(bytes_from_link(output),'WEBP',(800,520))
+    # The output link is rendered before the compression queue fully resets.
+    # Wait for the actual app ready state or a second selection is deliberately ignored.
+    page.wait_for_function('window.app && !window.app.state.isCompressing',timeout=15000)
     page.evaluate("setConvertMethod('default')")
     page.locator('#compress').set_input_files(str(green))
     page.wait_for_function("document.querySelectorAll('.image-output__item-download-button').length===2",timeout=60000)
