@@ -23,3 +23,11 @@ A numeric weighted score or worldwide ranking is **not warranted** until measure
 
 - [Initial quality gate run 41174771555](https://github.com/AIPMAndy/FreeDesign/actions/runs/41174771555): 4/4 unit tests and Chromium desktop/mobile-viewport smoke passed. Example processing times **1,032.6 ms desktop**, **253.2 ms mobile viewport** for one synthetic PNG; different warm-up conditions make these **not comparable performance results**.
 - [Subsequent run 41174815474](https://github.com/AIPMAndy/FreeDesign/actions/runs/41174815474): browser test timed out after PWA first activation/reload. A test synchronization patch is under review. Stable green repetition and physical device testing remain pending.
+
+
+## Cycle 2 evidence (until independent CI verification)
+
+- Local mock/unit suite: 4/4 → 8/8. These numbers refer to transformation/build tests, **not** image processing accuracy.
+- New real-browser CI: image codec/dimensions, EXIF/PNG metadata marker removal, external HTTP request detection, ZIP corruption test with a revoked middle blob.
+- Performance: no same-host competitor baseline or measurable improvement established.
+- Release approval: NOT APPROVED pending CI and real-device verification.

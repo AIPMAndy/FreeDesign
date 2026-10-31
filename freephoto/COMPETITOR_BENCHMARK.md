@@ -17,3 +17,8 @@
 - Metrics: output size, SSIM or suitable visual-quality metric, processing latency P50/P95, peak memory, unsupported/error count, time to first successful export.
 - Privacy: verify image bytes never appear in network requests, inspect metadata after export; no blanket guarantee for inherited filenames or malformed files.
 - At this cycle: **no comparable timed measurements were run**. Outstanding.
+
+
+## Cycle 2: integrity-focused work
+
+MAZANOKE remains the pinned algorithm baseline; Squoosh remains a codec/quality UX comparator. This cycle targets the correctness of partial ZIP download recovery rather than performance superiority. No competitive rank or improvement percentage is asserted without reproducible same-fixture tests.

@@ -15,3 +15,15 @@ Independent-review limitation: Builder and Red Team are separate inspection/test
 Attack scope excludes execution against live users or production data. Vulnerabilities are code-review findings until exploit reproductions and fixes are independently confirmed.
 
 | RT-08 | Medium | GitHub Actions run [41174815474](https://github.com/AIPMAndy/FreeDesign/actions/runs/41174815474) timed out waiting for image export; logs show first PWA activation reload during test. | Wait until `navigator.serviceWorker.controller` is established before submitting test input; rerun same smoke | Fix committed; CI revalidation pending |
+
+
+## Cycle 2 Red Team findings
+
+| ID | Severity | Evidence | Status |
+|---|---|---|---|
+| RT-08 | High | Upstream download.js filters failed fetch blobs then indexes the original image links by compacted index, potentially exporting images under another file's name. | Patched; browser ZIP regression in CI |
+| RT-09 | Medium | --from-source merged into existing dist directory and could leave stale assets. | Refuse existing or overlapping destination, local unit tested |
+| RT-10 | Medium | Previous network test only rejected non-GET requests; outbound GET was not detected. | Added network-origin assertion to browser suite |
+| RT-11 | Medium | Previous browser tests only used PNG. | Added JPEG→WebP and real PNG/JPEG metadata checks |
+
+**Independent reviewer limitation:** Builder, adversarial audit, and judge are separately documented stages within one assistant session, not three independent agents. iOS Safari, HEIC, large-batch load, and global benchmarks remain unverified.

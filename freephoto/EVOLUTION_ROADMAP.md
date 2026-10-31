@@ -24,3 +24,11 @@
 ## Stop conditions
 
 If any file leaves the device unexpectedly, image bytes are modified without clear notice, license obligations fail, or a high-severity flaw remains, **do not release**. Revert regressions and keep the prior version.
+
+
+## Cycle 2 execution and Cycle 3 gate
+
+1. Fix partial ZIP blob/name association and stale build destination; retain original GPL engine.
+2. Run Chromium JPEG/PNG/WebP, ZIP, and same-origin request smoke in CI; collect raw evidence.
+3. Keep PR draft until CI and independent real-device checks.
+4. Next: real Safari iPhone; HEIC realistic fixtures; 30-image identical-environment P50/P95 and peak memory benchmark; accessibility keyboard walkthrough. Do not deploy without user confirmation.
