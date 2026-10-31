@@ -1,0 +1,45 @@
+name: FreePhoto fork build check
+
+on:
+  push:
+    paths:
+      - 'freephoto/**'
+      - '.github/workflows/freephoto-check.yml'
+  pull_request:
+    paths:
+      - 'freephoto/**'
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate FreePhoto build script
+        run: python -m py_compile freephoto/build.py
+      - name: Build from pinned MAZANOKE source
+        run: python freephoto/build.py --out /tmp/freephoto-dist
+      - name: Verify static assets and attribution
+        run: |
+          test -f /tmp/freephoto-dist/index.html
+          test -f /tmp/freephoto-dist/LICENSE
+          test -f /tmp/freephoto-dist/docs/ATTRIBUTIONS.md
+          test -f /tmp/freephoto-dist/freephoto-theme.css
+          test -f /tmp/freephoto-dist/freephoto-i18n.js
+          test -f /tmp/freephoto-dist/assets/js/compression.js
+          test -f /tmp/freephoto-dist/assets/vendor/browser-image-compression.js
+          grep -q 'FreePhoto' /tmp/freephoto-dist/index.html
+          grep -q 'freephoto-theme.css' /tmp/freephoto-dist/service-worker.js
+          node --check /tmp/freephoto-dist/freephoto-i18n.js
+      - name: Smoke-test static serving
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 --directory /tmp/freephoto-dist >/tmp/freephoto-server.log 2>&1 &
+          sleep 2
+          curl --fail --silent --show-error http://127.0.0.1:8765/index.html >/dev/null
+          curl --fail --silent --show-error http://127.0.0.1:8765/freephoto-theme.css >/dev/null
+          curl --fail --silent --show-error http://127.0.0.1:8765/assets/js/compression.js >/dev/null
