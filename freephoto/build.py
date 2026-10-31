@@ -14,6 +14,7 @@ import subprocess
 from hardening import harden_distribution
 from cycle2_patch import patch_zip_download
 from cycle3_patch import patch_zip_notice
+from cycle4_patch import patch_object_url_cleanup
 
 UPSTREAM = 'https://github.com/civilblur/mazanoke.git'
 UPSTREAM_COMMIT = 'ceab516ade2a68f3c0abef8bd8fa03ada3ac3e7b'
@@ -74,6 +75,7 @@ def patch_site(target: Path) -> None:
     harden_distribution(target)
     patch_zip_download(target)
     patch_zip_notice(target)
+    patch_object_url_cleanup(target)
     (target/'FORK-NOTICE.md').write_text(
         '# FreePhoto fork notice\n\n'
         'This distribution is a modified version of **MAZANOKE** by civilblur.\n'
