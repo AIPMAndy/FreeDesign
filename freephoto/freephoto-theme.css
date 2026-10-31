@@ -1,0 +1,28 @@
+/* FreePhoto warm-white / forest-green UI, original MAZANOKE engine retained. */
+.theme-light {
+  --color-primary:#265d49;
+  --color-primary-variant:#d5e4d7;
+  --color-primary-hover:#1a4436;
+  --color-accent:#478a6c;
+  --color-surface:#f7f8f3;
+  --color-surface-variant:#edf0e9;
+  --color-surface-high:#fff;
+  --color-surface-higher:#e2e9df;
+  --color-surface-higher-hover:#d7e2d4;
+  --color-on-surface:#24362c;
+  --color-on-surface-high:#162a21;
+  --color-on-surface-higher:#14221b;
+  --color-border:rgba(38,93,73,.28);
+  --color-border-hover:rgba(38,93,73,.42);
+  --rounded-md:12px;--rounded-lg:18px;--rounded-xl:26px;
+  --shadow-1:0 16px 38px rgba(27,57,42,.06);
+}
+body{letter-spacing:-.012em}
+.logo-text{font-weight:750;letter-spacing:-.05em}
+.freephoto-dot{color:#58a97c}
+.logo-image{display:none!important}
+.top-nav{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.button-cta{transition:background-color .18s ease,transform .18s ease}
+.button-cta:hover{transform:translateY(-1px)}
+footer::after{content:'FreePhoto 基于 MAZANOKE · GPL-3.0 · AI 酋长 Andy';display:block;text-align:center;font-size:12px;opacity:.66;padding:8px 20px 16px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
