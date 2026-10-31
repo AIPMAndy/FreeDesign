@@ -1,0 +1,59 @@
+name: FreePhoto | Build & publish website
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'freephoto/**'
+      - '.github/workflows/freephoto-pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: freephoto-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run regression tests
+        run: python -m unittest discover -s freephoto/tests -v -p 'test_*.py'
+      - name: Build locked upstream + FreePhoto website
+        run: python freephoto/build.py --out freephoto/dist
+      - name: Verify generated website, attribution, and assets
+        run: |
+          test -f freephoto/dist/index.html
+          test -f freephoto/dist/freephoto-site.css
+          test -f freephoto/dist/freephoto-mark.svg
+          test -f freephoto/dist/.nojekyll
+          test -f freephoto/dist/LICENSE
+          test -f freephoto/dist/docs/ATTRIBUTIONS.md
+          test -f freephoto/dist/FORK-NOTICE.md
+          grep -q 'id="fp-heading"' freephoto/dist/index.html
+          grep -q 'id="tool"' freephoto/dist/index.html
+          grep -q 'id="privacy"' freephoto/dist/index.html
+          grep -q 'assets/js/compression.js' freephoto/dist/index.html
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: freephoto/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check Pages configuration
+        uses: actions/configure-pages@v5
+      - name: Deploy FreePhoto
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -40,3 +40,12 @@ python3 build.py --from-source /path/to/mazanoke --out dist
 © civilblur and MAZANOKE contributors. Source: https://github.com/civilblur/mazanoke
 
 Changes by AIPMAndy. Licensed under [GNU GPL-3.0](https://github.com/civilblur/mazanoke/blob/main/LICENSE). More details in generated `dist/FORK-NOTICE.md` and `dist/docs/ATTRIBUTIONS.md`.
+
+## Cycle 2 quality gate
+
+The second cycle repairs the upstream ZIP partial-failure index mismatch and prevents unsafe stale build-directory merges. Local unit tests (8/8) pass before submission. CI additionally tests JPEG→WebP, PNG/JPEG metadata privacy, external network requests, and corrupt blob ZIP recovery. CI and real-device status must be read from the linked workflow; no claim of iOS Safari compatibility is implied.
+
+
+## Cycle 3 UX: partial ZIP feedback
+
+When a ZIP export skips one or more unavailable images, FreePhoto displays a nonblocking Chinese status message (role=status, aria-live=polite) indicating downloaded and skipped counts. A complete ZIP failure also displays an error. The Chromium regression deliberately revokes one blob URL and checks the warning as well as file identity. Upstream GPL-3.0 notices and original compression engine remain unchanged.
