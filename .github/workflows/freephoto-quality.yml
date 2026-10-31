@@ -1,0 +1,43 @@
+name: FreePhoto quality gate
+on:
+  pull_request:
+    paths:
+      - 'freephoto/**'
+      - '.github/workflows/freephoto-quality.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit tests
+        run: python -m unittest discover -s freephoto/tests -v -p 'test_*.py'
+      - name: Build pinned GPL upstream
+        run: python freephoto/build.py --out freephoto/dist
+      - name: Verify license and local assets
+        run: |
+          test -f freephoto/dist/LICENSE
+          test -f freephoto/dist/docs/ATTRIBUTIONS.md
+          test -f freephoto/dist/FORK-NOTICE.md
+          test -f freephoto/dist/assets/vendor/browser-image-compression.js
+          grep -q 'FreePhoto' freephoto/dist/index.html
+          ! grep -q 'location.origin}/assets/vendor' freephoto/dist/assets/js/compression.js
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install 'playwright==1.56.0' 'Pillow==12.0.0'
+          python -m playwright install --with-deps chromium
+      - name: Chromium smoke (desktop + mobile viewport)
+        run: python freephoto/tests/smoke_browser.py
+      - name: Preserve test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: freephoto-test-evidence
+          path: freephoto/artifacts/
+          if-no-files-found: ignore
