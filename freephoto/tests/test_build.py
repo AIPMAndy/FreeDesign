@@ -25,7 +25,7 @@ class PatchTest(unittest.TestCase):
             <meta name="theme-color" content="#191919" />
             <script>localStorage.getItem("theme") || "theme-dark"</script>
             </head><body><h1 class="logo-text">MAZANOKE</h1>
-            <span>created by civilblur</span><span>Install MAZANOKE</span>
+            <span>created by civilblur</span><span>Install MAZANOKE</span>\n    <div class="content">fixture optimizer</div>\n    <footer>fixture attribution</footer>
             <script src="browser-image-compression.js"></script>
             <script type="text/javascript" src="./assets/js/events.js"></script>
             <script>navigator.serviceWorker.register("/service-worker.js")</script></body></html>''',encoding='utf8')
