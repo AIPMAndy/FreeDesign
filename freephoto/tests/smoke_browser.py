@@ -44,6 +44,9 @@ def run():
                     missing = []
                     page.on('response', lambda r: missing.append(r.url) if r.status >= 400 and '/assets/' in r.url else None)
                     page.goto(uri, wait_until='domcontentloaded')
+                    # PWA claims the page then reloads; do not race against its first activation.
+                    page.wait_for_function("() => 'serviceWorker' in navigator && navigator.serviceWorker.controller !== null", timeout=20000)
+                    page.wait_for_load_state('load')
                     page.locator('#compress').set_input_files(str(fixture))
                     link = page.locator('.image-output__item-download-button').first
                     start = time.perf_counter()
