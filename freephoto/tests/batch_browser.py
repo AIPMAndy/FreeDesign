@@ -4,7 +4,18 @@ from io import BytesIO
 from pathlib import Path
 from PIL import Image
 from playwright.sync_api import sync_playwright
-from realworld_browser import website, no_external_requests, result_bytes, ARTIFACTS
+from realworld_browser import website, bytes_from_link as result_bytes, ART as ARTIFACTS
+from urllib.parse import urlsplit
+
+def no_external_requests(page):
+    outside=[]
+    def audit(request):
+        u=urlsplit(request.url)
+        if u.scheme in ('blob', 'data'): return
+        if u.hostname!='127.0.0.1' or request.method not in ('GET','HEAD'):
+            outside.append({'method':request.method,'url':request.url})
+    page.on('request',audit)
+    return outside
 import json, time
 
 def fixtures(folder):
