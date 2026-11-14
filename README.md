@@ -3,10 +3,10 @@
 > **面向开发者的设计资源大全** —— 按开发场景分类，拿来即用
 
 [![GitHub stars](https://img.shields.io/github/stars/AIPMAndy/FreeDesign?style=social)](https://github.com/AIPMAndy/FreeDesign)
-[![Last Update](https://img.shields.io/badge/last%20update-2026--09--14-brightgreen)](https://github.com/AIPMAndy/FreeDesign)
+[![Last Update](https://img.shields.io/badge/last%20update-2026--11--15-brightgreen)](https://github.com/AIPMAndy/FreeDesign)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-**最后更新**: 2026-09-14
+**最后更新**: 2026-11-15
 
 ---
 
@@ -25,6 +25,16 @@
 > **TL;DR｜一句话**：FreeDesign 是 AI 酋长 Andy 整理的开发者设计资源大全。适合做网站、小程序、APP、后台和 AI 产品的开发者。它按开发场景分类收录组件库、Figma 插件、配色、字体、动画、3D、图标、设计系统和 Landing Page 模板，资源可以直接拿来用或交给 AI 按样式开发。
 >
 > 作者：AI酋长Andy（Andy Liu；流量 AI 联合创始人、星觉 AI 创始人；[GitHub @AIPMAndy](https://github.com/AIPMAndy) · [X @AIPMAndy](https://x.com/AIPMAndy) · [metaver.vip](https://metaver.vip/)）
+
+## 🧭 审美训练与设计灵感（新增）
+
+做 AI 网站、品牌海报或产品界面，光有组件库不够，**更难的是判断什么设计适合这个场景**。
+
+- **[《设计审美参考与实战工作流》](guides/design-taste-workflow.md)**：新增 **9 类场景、37 个独立整理的设计参考网站**，按视觉方向、Landing Page、UI 流程、品牌海报、字体、配色、视频动效、3D、设计落地组织，并附 10 分钟拆解法、AI 提示词与 7 天训练计划。
+- **灵感来源**：Eian 的 [《100 个提升审美的设计网站大赏》](https://x.com/eianlu/status/2121219503988113557)（2026-11-13）。**原文的完整 100 个网址尚未核实；本项目收录的 37 项是独立整理，不是对原文清单的复制或完整收录。**
+- **核心原则**：先拆解结构与规则，再自己组合；学习灵感不等于获得他人作品的商用授权。
+
+---
 
 ## 💡 为什么需要 FreeDesign？
 
@@ -61,6 +71,7 @@
 - [🚀 Landing Page 模板](#-landing-page-模板)
 - [🎯 精选技术栈组合](#-精选技术栈组合)
 - [⚠️ 设计避坑指南](#️-设计避坑指南)
+- [🧭 审美训练与设计灵感（新增）](#-审美训练与设计灵感新增)
 - [📚 更多资源](#-更多资源)
 
 ---
