@@ -7,6 +7,7 @@
 ## Docs
 
 - [README](https://github.com/AIPMAndy/FreeDesign/blob/main/README.md): 项目说明（中文）
+- [设计审美训练与参考导航](https://github.com/AIPMAndy/FreeDesign/blob/main/guides/design-taste-workflow.md): 9 类设计场景、37 个独立整理的参考网站、审美拆解法、AI 提示词与 7 天训练计划；启发自 Eian 的 100 网站文章（并非原文完整清单）
 - [CONTRIBUTING.md](https://github.com/AIPMAndy/FreeDesign/blob/main/CONTRIBUTING.md): 贡献指南
 
 ## Optional
